@@ -1,0 +1,90 @@
+
+# this is the name of this skillet, should be unique within a given repository
+name: alicloud_image_list
+
+# label should be a human readable label that conveys what this skillet will do
+label: Alicloud Listing Custom Images
+
+# description is a longer more informative version of a label
+description: This skillet will list the user's custom images in all current Alibaba Cloud regions
+
+# type instructs Panhandler how to consume this skillet
+type: python3
+
+# extends allows you to include other skillets along with this one
+extends:
+
+# labels allow extensible configuration options per skillet type. For example, lables can be used to
+# group multiple skillets of the same type (pan-os skillets labeled as version: 9.0 for example)
+labels:
+  collection:
+    - Alibaba-Cloud-List-Images
+    - Alibaba-Cloud
+
+
+# Variables will be presented to the user via the Panhandler GUI. These values will then be passed to
+# the terraform binary as '--var' options, thus overriding any tfvars entries.
+# Variable names MUST match the names of the defined terraform variables
+variables:
+  - name: access_key
+    description: Alibaba Cloud Access Key
+    default:
+    type_hint: text
+  - name: secret_key
+    description: Alibaba Cloud Secret Key
+    default:
+    type_hint: password
+  - name: region
+    description: Alicloud Region
+    default: ap-southeast-1
+    type_hint: dropdown
+    dd_list:
+      - key: cn-qingdao
+        value: cn-qingdao
+      - key: cn-beijing
+        value: cn-beijing
+      - key: cn-zhangjiakou
+        value: cn-zhangjiakou
+      - key: cn-huhehaote
+        value: cn-huhehaote
+      - key: cn-hangzhou
+        value: cn-hangzhou
+      - key: cn-shanghai
+        value: cn-shanghai
+      - key: cn-shenzhen
+        value: cn-shenzhen
+      - key: cn-chengdu
+        value: cn-chengdu
+      - key: cn-hongkong
+        value: cn-hongkong
+      - key: ap-northeast-1
+        value: ap-northeast-1
+      - key: ap-southeast-1
+        value: ap-southeast-1
+      - key: ap-southeast-2
+        value: ap-southeast-2
+      - key: ap-southeast-3
+        value: ap-southeast-3
+      - key: ap-southeast-5
+        value: ap-southeast-5
+      - key: ap-south-1
+        value: ap-south-1
+      - key: us-east-1
+        value: us-east-1
+      - key: us-west-1
+        value: us-west-1
+      - key: eu-west-1
+        value: eu-west-1
+      - key: me-east-1
+        value: me-east-1
+      - key: eu-central-1
+        value: eu-central-1
+    
+# Snippets is an ordered list of configuration xml fragments that will be pushed to the PAN-OS NGFW. The xpath
+# determines where in the configuration hierarchy the xml fragment will be set. 'file' indicates the name of the file
+# to load and parse. Jinja2 style variables will be variable interpolated using the values of the 'variables' defined
+# in the 'variables' section.
+snippets:
+  - name: script
+    file: DescribeImages.py
+    input_type: cli

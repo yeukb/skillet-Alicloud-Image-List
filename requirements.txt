@@ -1,0 +1,5 @@
+aliyun-python-sdk-core
+aliyun-python-sdk-ecs
+# aliyun-python-sdk-vpc
+# aliyun-python-sdk-slb
+# aliyun-python-sdk-ossadmin 
