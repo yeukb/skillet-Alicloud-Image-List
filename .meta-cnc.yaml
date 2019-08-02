@@ -26,15 +26,15 @@ labels:
 # the terraform binary as '--var' options, thus overriding any tfvars entries.
 # Variable names MUST match the names of the defined terraform variables
 variables:
-  - name: access_key
+  - name: alicloud_access_key
     description: Alibaba Cloud Access Key
     default:
     type_hint: text
-  - name: secret_key
+  - name: alicloud_secret_key
     description: Alibaba Cloud Secret Key
     default:
     type_hint: password
-  - name: region
+  - name: alicloud_region
     description: Alicloud Region
     default: ap-southeast-1
     type_hint: dropdown
